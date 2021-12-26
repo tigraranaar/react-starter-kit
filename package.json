@@ -17,21 +17,9 @@
 		"build-type": "npm run build:types && npm run build:js",
 		"build:types": "tsc --emitDeclarationOnly",
 		"build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
-		"prepare": "husky install",
 		"lint": "eslint --debug src/",
 		"lint:write": "eslint --debug src/ --fix",
 		"prettier": "prettier --write src/**/*.js"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged"
-		}
-	},
-	"lint-staged": {
-		"*.(js|jsx|ts|tsx)": [
-			"npm run lint:write",
-			"git add"
-		]
 	},
 	"keywords": [],
 	"author": "tigraranaar",
@@ -47,6 +35,7 @@
 		"babel-loader": "^8.2.3",
 		"css-loader": "^6.5.1",
 		"css-minimizer-webpack-plugin": "^3.3.1",
+		"cssnano": "^5.0.14",
 		"eslint": "^8.5.0",
 		"eslint-config-airbnb": "^19.0.4",
 		"eslint-config-prettier": "^8.3.0",
@@ -59,6 +48,7 @@
 		"husky": "^7.0.4",
 		"lint-staged": "^12.1.4",
 		"mini-css-extract-plugin": "^2.4.5",
+		"postcss": "^8.4.5",
 		"postcss-loader": "^6.2.1",
 		"postcss-preset-env": "^7.1.0",
 		"prettier": "^2.5.1",

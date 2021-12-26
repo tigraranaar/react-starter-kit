@@ -5,3 +5,4 @@ build/
 webpack.dev.js
 webpack.prod.js
 webpack.common.js
+postcss.config.js
