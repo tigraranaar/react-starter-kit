@@ -6,12 +6,32 @@
 	"scripts": {
 		"start": "webpack serve --config webpack.config.dev.js",
 		"build": "webpack --config webpack.config.prod.js",
+		"eslint": "eslint --ext .js src",
+		"eslint:fix": "eslint --ext .js src --fix",
+		"stylelint": "stylelint src/**/*.scss",
+		"stylelint:fix": "stylelint src/**/*.scss --fix",
+		"format": "prettier -w .",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"type-check": "tsc --noEmit",
 		"type-check:watch": "npm run type-check -- --watch",
 		"build-type": "npm run build:types && npm run build:js",
 		"build:types": "tsc --emitDeclarationOnly",
-		"build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline"
+		"build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
+		"prepare": "husky install",
+		"lint": "eslint --debug src/",
+		"lint:write": "eslint --debug src/ --fix",
+		"prettier": "prettier --write src/**/*.js"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*.(js|jsx|ts|tsx)": [
+			"npm run lint:write",
+			"git add"
+		]
 	},
 	"keywords": [],
 	"author": "tigraranaar",
@@ -36,6 +56,8 @@
 		"eslint-plugin-react": "^7.28.0",
 		"eslint-plugin-react-hooks": "^4.3.0",
 		"html-webpack-plugin": "^5.5.0",
+		"husky": "^7.0.4",
+		"lint-staged": "^12.1.4",
 		"mini-css-extract-plugin": "^2.4.5",
 		"postcss-loader": "^6.2.1",
 		"postcss-preset-env": "^7.1.0",
